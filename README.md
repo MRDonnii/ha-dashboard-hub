@@ -4,9 +4,15 @@ Oversigt over et Home Assistant-dashboard bygget stort set udelukkende af selvby
 
 ## Forsiden
 
+### Desktop
+
 ![Anonymiseret Home Assistant-forside på desktop](docs/images/home-dashboard-desktop.png)
 
-Forsiden ovenfor er optaget fra den isolerede Home Assistant-demo med samme responsive opbygning som den rigtige installation. Personer, kameraer, lokationer, entities og værdier er erstattet med fiktive testdata, så hele dashboardets samspil kan vises uden at offentliggøre private oplysninger.
+### Mobil
+
+![Anonymiseret Home Assistant-forside på mobil](docs/images/home-dashboard-mobile-complete.png)
+
+Forsiderne ovenfor er optaget fra den isolerede Home Assistant-demo med samme responsive opbygning som den rigtige installation. Personer, kameraer, lokationer, entities og værdier er erstattet med fiktive testdata, så hele dashboardets samspil kan vises uden at offentliggøre private oplysninger.
 
 | Del af forsiden | Kort |
 |---|---|
