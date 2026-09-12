@@ -50,7 +50,7 @@ Detaljeret kort-for-kort mapping: [docs/dashboards.md](docs/dashboards.md).
 
 Alle ~50 kort med formål, config og repo-link: [docs/cards.md](docs/cards.md).
 
-Stort set alle kort er publiceret som selvstændige, installérbare repos (drop `.js`-filen i `www/`, tilføj som resource, brug `type: custom:ha-x-card` i en view). Kun to filer er holdt uden for GitHub — én fordi den har rigtige familienavne hardcoded i stedet for i config, én fordi den slet ikke er et kort — se noten i [docs/cards.md](docs/cards.md).
+Stort set alle kort er publiceret som selvstændige, installérbare repos (drop `.js`-filen i `www/`, tilføj som resource, brug `type: custom:ha-x-card` i en view). Kun én fil er holdt uden for GitHub, fordi den slet ikke er et kort — se noten i [docs/cards.md](docs/cards.md). Ét kort med hardcodede familienavne/adresse er ikke publiceret som den er, men findes genopbygget som et fuldt config-drevet, generisk kort under et andet navn.
 
 ## Sådan bygger du videre på det
 

@@ -649,18 +649,30 @@ Klikbar og trækbar toggle-switch.
 
 ---
 
-### hyacintvej-home-card (dir)
-**Tag:** `custom:hyacintvej-home-card` · **Version:** 1.3.2 · **Repo:** ikke publiceret · **Bruges i:** ikke fundet i live dashboards
+### smart-home-overview-card
+**Tag:** `custom:smart-home-overview-card` · **Version:** 1.0.0 · **Repo:** [MRDonnii/smart-home-overview-card](https://github.com/MRDonnii/smart-home-overview-card) · **Bruges i:** ikke sat op i nogen dashboard endnu (kun forgængeren `hyacintvej-home-card` findes lokalt, se note nedenfor)
 
-Let, bespoke HTML/JS-forside. `setConfig` gemmer config-objektet, men intet i filen læser det bagefter — alle entity-id'er, tekster og opførsel er hardcodet i render-logikken. Kortet er reelt ikke konfigurerbart i praksis; nævnt her for fuldstændighedens skyld.
+Fuldt genericeret genudgave af det tidligere lokale `hyacintvej-home-card`: klokke/vejr-hero, roterende alarm-ticker, 4 nøgletal-fliser (husforbrug/elbil/elpris/pool), 4 systemfliser (kæledyr/sikkerhed/varme/indstillinger), live kamera-grid, familie/tilstedeværelses-grid og en elpris-graf med dag/i morgen/uge-faner. Layoutet er fast, men alt indhold — entiteter, alarmer, personer, kameraer, navigationsstier — er konfigurerbart, med en fuld visuel editor (tekstfelter + JSON-textareas) og `getStubConfig` så kortet er brugbart med det samme fra kortvælgeren.
+
+- `title`, `pet_name`, `car_name`, `currency` — tekst
+- `entities` — objekt-map, ~40 valgfrie nøgler (hus-mode, alarm, vejr, effekt/elbil, elpris, pool, kæledyrsfoder, låse, varme/Calefa-agtige sensorer, hvidevarer, m.m.) — se README for fuld liste
+- `paths` — objekt-map af navigationsstier pr. flise
+- `price_thresholds` — `{medium, high, critical}` i valuta/kWh
+- `alerts` — array af `{entity, kind, title, detail, icon, action, toggle}` (plus automatisk scanning af `*_smoke_alarm_detected`/`*_co_alarm_detected`/`*_(glass_break|siren)_detected` i hele installationen)
+- `night_locks` / `night_extra_contacts` / `entities.nightLockWindow` — natlig lås-tjek
+- `heating_fault_entities` — array af entity-id'er der udløser varme-fejl-status
+- `people` — array af `{name, entity, city, battery, trip, path, hold, reminder}`
+- `camera_groups` — array af `{label, selector_entity, path, cameras: [{key, name, camera_entity, path, detection_prefix, motion_entity, extra_event_entities}]}`
+- Har fuld visuel editor (`smart-home-overview-card-editor`)
+
+**Om genericeringen:** den oprindelige `hyacintvej-home-card` havde rigtige familienavne (Mads, Viggo, Mådde, Donnii), gadenavnet Hyacintvej og en lang række brand-/hardware-specifikke entity-id'er (Verisure, Wavin Calefa, Kamstrup, Strømligning) hardcoded direkte i render-logikken — `setConfig` gemte konfigurationen, men intet i filen læste den bagefter, så kortet reelt ikke var konfigurerbart. `smart-home-overview-card` er en fra bunden genericeret udgave: alle ca. 45 entity-referencer, de tre store datalister (alerts/people/camera_groups) og alle navigationsstier er flyttet til config med generiske eksempel-defaults. Layout, CSS og al forretningslogik (batteri-tærskler, elpris-niveauer, kamera-detektionsmønster) er bevaret uændret.
 
 ---
 
 ## Ikke publiceret separat
 
-To filer er bevidst holdt uden for GitHub:
+Kun **`energy-fjernvarme-labels.js`** er holdt uden for GitHub — det er ikke et kort (intet `customElements.define`), men et lille DOM-script der omskriver "gas" til "fjernvarme" på HA's indbyggede `/energy`-side. Holdt uden for kataloget over faktiske kort.
 
-- **`hyacintvej-home-card`** — kortet gemmer `setConfig`-værdien, men bruger den aldrig; alle entity-id'er og tekster (inklusive rigtige for- og efternavne på husstandens medlemmer og gadenavnet) er hardcoded direkte i render-logikken i stedet for at gå gennem config. Det kræver en omskrivning til rigtig config-drevet kort, før det giver mening at dele det — ellers ville det bare være denne husstands egne persondata, ikke et genbrugeligt design.
-- **`energy-fjernvarme-labels.js`** — ikke et kort (intet `customElements.define`), men et lille DOM-script der omskriver "gas" til "fjernvarme" på HA's indbyggede `/energy`-side. Holdt uden for kataloget over faktiske kort.
+Den lokale `hyacintvej-home-card` (husstandens egen forside, med rigtige familienavne og adresse hardcoded direkte i render-logikken i stedet for config) er **ikke** publiceret som den er og bliver det ikke — men er genopbygget fra bunden som en fuldt config-drevet, generisk udgave: [smart-home-overview-card](https://github.com/MRDonnii/smart-home-overview-card). Se dens afsnit ovenfor for hvad der er ændret.
 
-Alle øvrige kort — inklusive de tre der tidligere var udeladt her (`ha-license-plate-card`, `ha-person-detection-card`, `ha-tesla-vehicle-card`) og de ældre rod-niveau `.js`-filer — er nu publiceret som selvstændige repos. De indeholder kun generisk kort-kode: entity-id'er i defaults er navneeksempler til udskiftning, ikke data der afslører noget om husstanden. Et enkelt hardcoded internt id (`ha-tesla-vehicle-card`s EV Ledger-integrations-id) blev fjernet fra den publicerede udgave og gjort til et påkrævet config-felt i stedet.
+Alle øvrige kort — inklusive de fire der tidligere var udeladt her (`ha-license-plate-card`, `ha-person-detection-card`, `ha-tesla-vehicle-card`, `hyacintvej-home-card`) og de ældre rod-niveau `.js`-filer — er nu publiceret som selvstændige repos. De indeholder kun generisk kort-kode: entity-id'er i defaults er navneeksempler til udskiftning, ikke data der afslører noget om husstanden. Et enkelt hardcoded internt id (`ha-tesla-vehicle-card`s EV Ledger-integrations-id) blev fjernet fra den publicerede udgave og gjort til et påkrævet config-felt i stedet.
