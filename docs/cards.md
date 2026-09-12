@@ -270,7 +270,7 @@ Fuldt kort til en robotplæneklipper: status, batteri, zoner og justeringer.
 ---
 
 ### ha-license-plate-card
-**Tag:** `custom:ha-license-plate-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (rører kamera-baseret nummerpladegenkendelse, bevidst holdt lokal) · **Bruges i:** teknik-overblik
+**Tag:** `custom:ha-license-plate-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/ha-license-plate-card](https://github.com/MRDonnii/ha-license-plate-card) · **Bruges i:** teknik-overblik
 
 "Protect Nummerpladevagt" — 14 dages nummerpladehistorik med Protect-billeder.
 
@@ -316,7 +316,7 @@ Samlet driftstatus for Home Assistant, kiosk og backup med tilhørende handlinge
 ---
 
 ### ha-person-detection-card
-**Tag:** `custom:ha-person-detection-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (rører kamera-baseret persongenkendelse, bevidst holdt lokal) · **Bruges i:** teknik-overblik
+**Tag:** `custom:ha-person-detection-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/ha-person-detection-card](https://github.com/MRDonnii/ha-person-detection-card) · **Bruges i:** teknik-overblik
 
 "Protect Personvagt" — 14 dages personhistorik med Protect-billeder.
 
@@ -477,13 +477,14 @@ Temperaturgrafer med dynamiske termostatmål.
 ---
 
 ### ha-tesla-vehicle-card
-**Tag:** `custom:ha-tesla-vehicle-card` (bundler `custom:ha-tesla-charge-popup-card`) · **Version:** ikke versioneret · **Repo:** ikke publiceret endnu · **Bruges i:** teknik-overblik
+**Tag:** `custom:ha-tesla-vehicle-card` (bundler `custom:ha-tesla-charge-popup-card`) · **Version:** ikke versioneret · **Repo:** [MRDonnii/ha-tesla-vehicle-card](https://github.com/MRDonnii/ha-tesla-vehicle-card) · **Bruges i:** teknik-overblik
 
 "Tesla Vehicle Center" — samlet Tesla-, Monta- og EV Ledger-kort.
 
 - `title` — tekst, standard "Tesla ladning" / "EnerGitte" afhængigt af hvilket af de to kort
 - `navigation_path` — tekst, standard `/teknik-overblik/tesla`
 - `entities` — objekt-map der overskriver et stort indbygget `TESLA_ENTITIES`-default: batteri, rækkevidde, kilometertæller, online, indendørs/udendørs temp, sover, lader/lades-flag, døre, sentry, bagagerum, lokations-tracker, hvac, effektivitet, dæktryk x4, dags-/ture-/sidste-tur-statistik, ladeeffekt/-hastighed/-færdig/-resterende/-estimat, mål-SOC, klar-til-tid, bedste ladetid/-pris, Monta wallet/transaktioner/kontrol-entiteter
+- `evledger_entry_id` — **påkrævet** for at kunne slette ture/ladninger via "Slet"-knapperne (ingen fallback-værdi; det var oprindeligt hardcoded til denne instans' eget EV Ledger config-entry, men er fjernet i den publicerede udgave)
 
 ---
 
@@ -556,7 +557,7 @@ Samlet vejrkort: nu/i dag, timeprognose, pollen, sol & UV, radar og 5-dages udsi
 ---
 
 ### ac-temperature-control-card.js
-**Tag:** `custom:ac-temperature-control-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script fra før mappe-pr-kort-konventionen) · **Bruges i:** energi-overblik
+**Tag:** `custom:ac-temperature-control-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/ac-temperature-control-card](https://github.com/MRDonnii/ac-temperature-control-card) · **Bruges i:** energi-overblik
 
 Optimistisk AC-temperaturstyring der sender kommandoen ved slip (ikke live under træk).
 
@@ -565,7 +566,7 @@ Optimistisk AC-temperaturstyring der sender kommandoen ved slip (ikke live under
 ---
 
 ### calefa-number-control-card.js
-**Tag:** `custom:calefa-number-control-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:calefa-number-control-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/calefa-number-control-card](https://github.com/MRDonnii/calefa-number-control-card) · **Bruges i:** ikke fundet i live dashboards
 
 Optimistisk tal-kontrol til Calefa- og Home Assistant-helpers.
 
@@ -578,7 +579,7 @@ Optimistisk tal-kontrol til Calefa- og Home Assistant-helpers.
 ---
 
 ### hourly-weather-scroll-card.js
-**Tag:** `custom:hourly-weather-scroll-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:hourly-weather-scroll-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/hourly-weather-scroll-card](https://github.com/MRDonnii/hourly-weather-scroll-card) · **Bruges i:** ikke fundet i live dashboards
 
 Ikke-klikbar, horisontalt "drag"-bar timevejrsprognose.
 
@@ -587,7 +588,7 @@ Ikke-klikbar, horisontalt "drag"-bar timevejrsprognose.
 ---
 
 ### locked-map-card.js
-**Tag:** `custom:locked-map-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** teknik-overblik
+**Tag:** `custom:locked-map-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/locked-map-card](https://github.com/MRDonnii/locked-map-card) · **Bruges i:** teknik-overblik
 
 Wrapper omkring det indbyggede `map`-kort med fastlåst position og fungerende zoom.
 
@@ -597,7 +598,7 @@ Wrapper omkring det indbyggede `map`-kort med fastlåst position og fungerende z
 ---
 
 ### pool-forecast-card.js
-**Tag:** `custom:pool-forecast-card` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:pool-forecast-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/pool-forecast-card](https://github.com/MRDonnii/pool-forecast-card) · **Bruges i:** ikke fundet i live dashboards
 
 Pooltemperatur-forecast med usikkerhedsinterval og vejrkontekst.
 
@@ -609,7 +610,7 @@ Pooltemperatur-forecast med usikkerhedsinterval og vejrkontekst.
 ---
 
 ### pool-history-card.js
-**Tag:** `custom:pool-history-card` (bundler `custom:pool-water-quality-card`) · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:pool-history-card` (bundler `custom:pool-water-quality-card`) · **Version:** ikke versioneret · **Repo:** [MRDonnii/pool-history-card](https://github.com/MRDonnii/pool-history-card) · **Bruges i:** ikke fundet i live dashboards
 
 Pooltemperatur-historik (`pool-history-card`) plus pH/klor-vandkvalitetshistorik (`pool-water-quality-card`).
 
@@ -630,7 +631,7 @@ Pooltemperatur-historik (`pool-history-card`) plus pH/klor-vandkvalitetshistorik
 ---
 
 ### mysmart-draggable-toggle.js
-**Tag:** `custom:mysmart-draggable-toggle` · **Version:** ikke versioneret · **Repo:** ikke publiceret (ældre rod-niveau script) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:mysmart-draggable-toggle` · **Version:** ikke versioneret · **Repo:** [MRDonnii/mysmart-draggable-toggle](https://github.com/MRDonnii/mysmart-draggable-toggle) · **Bruges i:** ikke fundet i live dashboards
 
 Klikbar og trækbar toggle-switch.
 
@@ -657,6 +658,9 @@ Let, bespoke HTML/JS-forside. `setConfig` gemmer config-objektet, men intet i fi
 
 ## Ikke publiceret separat
 
-Tre kort er bevidst holdt uden for GitHub, fordi de er tæt koblet til denne husstands UniFi Protect- og Tesla/Monta-opsætning og dels rører data der er mere personlige end resten (nummerpladehistorik, persongenkendelse): `ha-license-plate-card`, `ha-person-detection-card`, `ha-tesla-vehicle-card`. Config er dokumenteret ovenfor, så mønsteret kan genskabes — koden ligger kun lokalt i `/config/www/`.
+To filer er bevidst holdt uden for GitHub:
 
-De ældre rod-niveau `.js`-filer (fra før mappe-pr-kort-konventionen) er heller ikke i egne repos — de er stort set legacy og holdes kun i live, fordi de stadig er registreret som resources.
+- **`hyacintvej-home-card`** — kortet gemmer `setConfig`-værdien, men bruger den aldrig; alle entity-id'er og tekster (inklusive rigtige for- og efternavne på husstandens medlemmer og gadenavnet) er hardcoded direkte i render-logikken i stedet for at gå gennem config. Det kræver en omskrivning til rigtig config-drevet kort, før det giver mening at dele det — ellers ville det bare være denne husstands egne persondata, ikke et genbrugeligt design.
+- **`energy-fjernvarme-labels.js`** — ikke et kort (intet `customElements.define`), men et lille DOM-script der omskriver "gas" til "fjernvarme" på HA's indbyggede `/energy`-side. Holdt uden for kataloget over faktiske kort.
+
+Alle øvrige kort — inklusive de tre der tidligere var udeladt her (`ha-license-plate-card`, `ha-person-detection-card`, `ha-tesla-vehicle-card`) og de ældre rod-niveau `.js`-filer — er nu publiceret som selvstændige repos. De indeholder kun generisk kort-kode: entity-id'er i defaults er navneeksempler til udskiftning, ikke data der afslører noget om husstanden. Et enkelt hardcoded internt id (`ha-tesla-vehicle-card`s EV Ledger-integrations-id) blev fjernet fra den publicerede udgave og gjort til et påkrævet config-felt i stedet.

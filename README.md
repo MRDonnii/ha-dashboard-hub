@@ -50,7 +50,7 @@ Detaljeret kort-for-kort mapping: [docs/dashboards.md](docs/dashboards.md).
 
 Alle ~50 kort med formål, config og repo-link: [docs/cards.md](docs/cards.md).
 
-De fleste kort er publiceret som selvstændige, installérbare repos (drop `.js`-filen i `www/`, tilføj som resource, brug `type: custom:ha-x-card` i en view). Nogle interne "byggeklods"-kort (grids, generiske toggles) og et par kort der rører personfølsomme data (nummerplade- og persongenkendelse fra kamerasystemet) er bevidst ikke publiceret separat — se noten i [docs/cards.md](docs/cards.md).
+Stort set alle kort er publiceret som selvstændige, installérbare repos (drop `.js`-filen i `www/`, tilføj som resource, brug `type: custom:ha-x-card` i en view). Kun to filer er holdt uden for GitHub — én fordi den har rigtige familienavne hardcoded i stedet for i config, én fordi den slet ikke er et kort — se noten i [docs/cards.md](docs/cards.md).
 
 ## Sådan bygger du videre på det
 
