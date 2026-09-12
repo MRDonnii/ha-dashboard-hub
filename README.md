@@ -2,6 +2,19 @@
 
 Oversigt over et Home Assistant-dashboard bygget stort set udelukkende af selvbyggede Lovelace-kort — ét lille JavaScript web component pr. kort, hver i sit eget repo. Dette repo er ikke selv et kort. Det er kortet over resten: hvilke kort der findes, hvor de bruges, og hvad de kan konfigureres med, så andre kan genskabe eller genbruge opsætningen.
 
+![Samlet galleri med neutrale mobilvisninger](docs/images/all-cards-mobile.png)
+
+## Mobile previews
+
+Alle previews er renderet som rene kort ved 390 px mobilbredde. Navbar og resten af det private dashboard er ikke med, og alle personer, adresser, kameraer, entities og sensorværdier er fiktive demo-data.
+
+- [Forsidekort samlet](docs/images/home-cards-mobile.png)
+- [Energi- og klimakort samlet](docs/images/energy-cards-mobile.png)
+- [Teknik- og kontrolkort samlet](docs/images/tech-cards-mobile.png)
+- [Komplet mobilgalleri](docs/images/all-cards-mobile.png)
+
+Det enkelte korts repository indeholder desuden sit eget fulde billede som `docs/preview.png`. Generatoren i [`tools/generate-mobile-previews.mjs`](tools/generate-mobile-previews.mjs) gør billederne reproducerbare uden forbindelse til en rigtig Home Assistant-installation.
+
 ## Hvad er det her
 
 ~50 kort, hver i egen mappe `www/ha-x-card/ha-x-card.js`, hver med sit eget GitHub-repo under [MRDonnii](https://github.com/MRDonnii?tab=repositories&q=&type=&language=&sort=name). Ingen fælles framework eller build-step — bare `customElements.define(...)`, indlæst direkte som en Lovelace-resource.
