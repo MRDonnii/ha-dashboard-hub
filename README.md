@@ -2,6 +2,25 @@
 
 Oversigt over et Home Assistant-dashboard bygget stort set udelukkende af selvbyggede Lovelace-kort — ét lille JavaScript web component pr. kort, hver i sit eget repo. Dette repo er ikke selv et kort. Det er kortet over resten: hvilke kort der findes, hvor de bruges, og hvad de kan konfigureres med, så andre kan genskabe eller genbruge opsætningen.
 
+## Forsiden
+
+![Anonymiseret Home Assistant-forside på desktop](docs/images/home-dashboard-desktop.png)
+
+Forsiden ovenfor er optaget fra den isolerede Home Assistant-demo med samme responsive opbygning som den rigtige installation. Personer, kameraer, lokationer, entities og værdier er erstattet med fiktive testdata, så hele dashboardets samspil kan vises uden at offentliggøre private oplysninger.
+
+| Del af forsiden | Kort |
+|---|---|
+| Header, klokke, vejr og samlet husstatus | [`custom:ha-home-header-card`](docs/cards.md#ha-home-header-card) |
+| Kamerafliser | [`custom:ha-home-camera-card`](docs/cards.md#ha-home-camera-card) |
+| Strøm, vand, fjernvarme, rum og kalender | [`custom:ha-home-summary-card`](docs/cards.md#ha-home-status-card) |
+| Bil, pool, foder, alarm og andre statusfliser | [`custom:ha-home-status-card`](docs/cards.md#ha-home-status-card) |
+| Personer, lokation og batteristatus | [`custom:ha-person-overview-card`](docs/cards.md#ha-person-overview-card) |
+| Strømpris og døgnets prisgraf | [`custom:ha-electricity-price-card`](docs/cards.md#ha-electricity-price-card) |
+| Responsiv desktop-/mobilplacering | [`custom:ha-home-desktop-layout-card`](docs/cards.md#ha-home-status-card) |
+| Navigation nederst | [`custom:navbar-card`](https://github.com/joseluis9595/lovelace-navbar-card) |
+
+De enkelte kort, deres konfiguration og installationsrepositories findes i [kortkataloget](docs/cards.md). Flere komplette dashboardviews og screenshots tilføjes løbende.
+
 ![Samlet galleri med neutrale mobilvisninger](docs/images/all-cards-mobile.png)
 
 ## Mobile previews
