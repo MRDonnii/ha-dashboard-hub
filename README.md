@@ -9,6 +9,7 @@ Oversigt over et Home Assistant-dashboard bygget stort set udelukkende af selvby
 Alle previews er renderet som rene kort ved 390 px mobilbredde. Navbar og resten af det private dashboard er ikke med, og alle personer, adresser, kameraer, entities og sensorværdier er fiktive demo-data.
 
 - [Retvisende, anonymiseret mobilforside](docs/images/home-dashboard-mobile.png) — samme rækkefølge og tæthed som den virkelige forside, uden navbar-overlap
+- [Rigtige HA-kort med test-entiteter](docs/images/home-dashboard-real-ha-test-entities.png) — optaget fra Home Assistant ved 390 px og beskåret uden HA-navigation
 - [Forsidekort samlet](docs/images/home-cards-mobile.png)
 - [Energi- og klimakort samlet](docs/images/energy-cards-mobile.png)
 - [Teknik- og kontrolkort samlet](docs/images/tech-cards-mobile.png)
