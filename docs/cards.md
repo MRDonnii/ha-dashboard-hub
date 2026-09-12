@@ -165,9 +165,11 @@ Responsivt kamera-overblik med automatisk og manuelt kameravalg.
 ---
 
 ### ha-home-header-card
-**Tag:** `custom:ha-home-header-card` · **Version:** 0.8.28 · **Repo:** [MRDonnii/ha-home-header-card](https://github.com/MRDonnii/ha-home-header-card) · **Bruges i:** hjem-overblik
+**Tag:** `custom:ha-home-header-card` · **Version:** 0.8.23 · **Repo:** [MRDonnii/ha-home-header-card](https://github.com/MRDonnii/ha-home-header-card) · **Bruges i:** hjem-overblik
 
 Samlet statusheader med vejr, alarmer og lokale vejreffekter.
+
+Vejrikoner følger med i releasen som `ha-home-header-assets.js`; ingen privat `/local/weather-icons`-mappe kræves.
 
 - `title` — tekst, standard "Hjemmet lige nu"
 - `weather` — **påkrævet** entity-id (kaster fejl hvis den mangler)
@@ -193,9 +195,11 @@ Rum-grid med temperatur, luftfugtighed, lys, tilstedeværelse og åbninger pr. r
 ---
 
 ### ha-home-status-card
-**Tag:** `custom:ha-home-status-card` (bundler desuden `custom:ha-home-summary-card` og `custom:ha-home-desktop-layout-card`, plus matchende `-editor`-elementer) · **Version:** 0.8.29 · **Repo:** [MRDonnii/ha-home-status-card](https://github.com/MRDonnii/ha-home-status-card) · **Bruges i:** hjem-overblik
+**Tag:** `custom:ha-home-status-card` (bundler desuden `custom:ha-home-summary-card` og `custom:ha-home-desktop-layout-card`, plus matchende `-editor`-elementer) · **Version:** 0.8.19 · **Repo:** [MRDonnii/ha-home-status-card](https://github.com/MRDonnii/ha-home-status-card) · **Bruges i:** hjem-overblik
 
 Én pakke, tre kort: `ha-home-status-card` er et konfigurerbart knapkort med indbyggede presets; `ha-home-summary-card` giver samlet husstatus/forbrug/kalender/rum-grid til forsiden; `ha-home-desktop-layout-card` giver balancerede, responsive kolonner til PC-forsiden.
+
+Sikkerhedslogoer og apparatbilleder følger med som `ha-home-status-assets.js`; en ny bruger behøver ikke kopiere private billedmapper.
 
 **ha-home-status-card:**
 - `preset` — én af de indbyggede presets (`home_energy`, `ev`, `electricity_price`, `pool`, `pet`, `security`, `heating`, `settings`, ...) — vælger et helt entity-bundt; påkrævet med mindre `entity` angives direkte
@@ -541,7 +545,7 @@ Animeret vandmåler-kort med live flow, forbrug og gateway-status.
 ---
 
 ### ha-weather-card
-**Tag:** `custom:ha-weather-card` · **Version:** 0.4.0 · **Repo:** [MRDonnii/ha-weather-card](https://github.com/MRDonnii/ha-weather-card) · **Bruges i:** energi-overblik
+**Tag:** `custom:ha-weather-card` · **Version:** 0.4.1 · **Repo:** [MRDonnii/ha-weather-card](https://github.com/MRDonnii/ha-weather-card) · **Bruges i:** energi-overblik
 
 Samlet vejrkort: nu/i dag, timeprognose, pollen, sol & UV, radar og 5-dages udsigt — alt hentet direkte fra en native `weather`-entity, ingen custom sensorer krævet.
 
@@ -579,7 +583,7 @@ Optimistisk tal-kontrol til Calefa- og Home Assistant-helpers.
 ---
 
 ### hourly-weather-scroll-card.js
-**Tag:** `custom:hourly-weather-scroll-card` · **Version:** ikke versioneret · **Repo:** [MRDonnii/hourly-weather-scroll-card](https://github.com/MRDonnii/hourly-weather-scroll-card) · **Bruges i:** ikke fundet i live dashboards
+**Tag:** `custom:hourly-weather-scroll-card` · **Version:** 0.1.0 · **Repo:** [MRDonnii/hourly-weather-scroll-card](https://github.com/MRDonnii/hourly-weather-scroll-card) · **Bruges i:** ikke fundet i live dashboards
 
 Ikke-klikbar, horisontalt "drag"-bar timevejrsprognose.
 

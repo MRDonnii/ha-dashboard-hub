@@ -9,6 +9,8 @@ import { promisify } from "node:util";
 const execFileAsync = promisify(execFile);
 const root = resolve(process.argv[2] || "/home/donnii/Codex");
 const only = new Set(process.argv.slice(3));
+const previewWidth = Math.max(85, Number(process.env.PREVIEW_WIDTH || 390));
+const forcedPreset = process.env.PREVIEW_PRESET || "";
 const chrome = "/usr/bin/google-chrome";
 const skip = new Set(["ha-dashboard-hub", "ha-button-card-github-package"]);
 const tagOverrides = {
@@ -46,7 +48,7 @@ const proc = spawn(chrome, [
   "--allow-file-access-from-files",
   `--remote-debugging-port=${port}`,
   `--user-data-dir=${profile}`,
-  "--window-size=390,6000",
+  `--window-size=${previewWidth},6000`,
   "--force-device-scale-factor=1",
   "about:blank",
 ], { stdio: "ignore" });
@@ -90,7 +92,10 @@ window.loadCardHelpers = async () => ({ createCardElement: () => {
   el.innerHTML = '<div class="camera-art">DEMO CAMERA</div>'; return el;
 }});
 class HAIcon extends HTMLElement {
-  connectedCallback() { if (this.shadowRoot) return; const r=this.attachShadow({mode:'open'}); r.innerHTML='<style>:host{display:inline-flex;width:1em;height:1em;align-items:center;justify-content:center}svg{width:100%;height:100%;fill:currentColor}</style><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12Zm0 4.8L6.8 12l5.2 5.2 5.2-5.2Z"/></svg>'; }
+  static get observedAttributes(){return ['icon'];}
+  connectedCallback(){this.draw()}
+  attributeChangedCallback(){this.draw()}
+  draw(){const icon=this.getAttribute('icon')||''; const glyph=/weather/.test(icon)?'☁':/shield|lock|security/.test(icon)?'♢':/car/.test(icon)?'▰':/pool|water/.test(icon)?'≈':/home/.test(icon)?'⌂':/lightning|flash|energy/.test(icon)?'ϟ':/cog|settings/.test(icon)?'⚙':/paw/.test(icon)?'●':/therm|radiator|heat/.test(icon)?'♨':/battery/.test(icon)?'▮':'•'; if(!this.shadowRoot)this.attachShadow({mode:'open'});this.shadowRoot.innerHTML='<style>:host{display:inline-flex;width:1em;height:1em;align-items:center;justify-content:center;font:700 1em/1 system-ui}</style><span aria-hidden="true">'+glyph+'</span>'}
 }
 customElements.define('ha-icon', HAIcon);
 customElements.define('ha-card', class extends HTMLElement {});
@@ -137,12 +142,14 @@ function enrich(config, tag) {
   if (Array.isArray(config.alerts) && !config.alerts.length) config.alerts=[{entity:'binary_sensor.demo_leak',name:'Alt er i orden',icon:'mdi:shield-check',state:'on'}];
   if (Array.isArray(config.status_items) && !config.status_items.length) config.status_items=[{entity:'sensor.demo_problem_count',name:'Hjemmet',icon:'mdi:home-check'}];
   if (Array.isArray(config.actions) && !config.actions.length) config.actions=[{name:'Genstart',icon:'mdi:restart',service:'homeassistant.restart'}];
-  if (tag==='ha-home-status-card') config.preset='home_energy';
+  if (tag==='ha-home-status-card') config.preset=${JSON.stringify(forcedPreset)}||'home_energy';
+  if (tag==='ha-home-header-card') config={...config,title:'Demo-hjemmet',weather:'weather.demo_home',mode_entity:'input_select.demo_house_mode',animation:false,show_weather_fx:false,alerts:[{entity:'binary_sensor.demo_guard',state:'on',operator:'=',message:'Tryghedsvagt aktiv',secondary_text:'Tryk for status og tidsbegrænset pause',priority:1,theme:'intruder',icon:'mdi:shield-account-outline',use_ha_icon:true}]};
+  if (tag==='ha-home-camera-card') config={...config,title:'Kameraer lige nu',show_header:false,aspect_ratio:'16:9',groups:[{name:'Carport',selector_entity:'sensor.demo_camera_front',cameras:[{key:'carport',name:'Carport',entity:'camera.demo_carport'}]},{name:'Indkørsel',selector_entity:'sensor.demo_camera_side',cameras:[{key:'driveway',name:'Indkørsel',entity:'camera.demo_driveway'}]},{name:'Baghave',selector_entity:'sensor.demo_camera_back',cameras:[{key:'garden',name:'Baghave',entity:'camera.demo_garden'}]}]};
   if (tag==='ac-temperature-control-card') config={entity:'climate.demo_living_room'};
   if (tag==='calefa-number-control-card') config={name:'Varmekurve',description:'Neutral demoindstilling',entity:'number.demo_heating_curve',icon:'mdi:tune-variant'};
   if (tag==='ha-robot-fleet-card') config={title:'Robotcenter',robots:[{name:'Rengøringsrobot',entity:'vacuum.demo_robot',battery:'sensor.demo_robot_battery',error:'sensor.demo_robot_error',icon:'mdi:robot-vacuum',card:{type:'custom:demo-placeholder-card'}}]};
   if (tag==='ha-kid-tracker-card') config={...config,title:'Alex',entity:'person.demo_alex',tracker:'device_tracker.demo_watch',image:'',location_name:'sensor.demo_location_name'};
-  if (tag==='ha-person-overview-card' && (!Array.isArray(config.persons)||!config.persons.length)) config={...config,title:'Personer',persons:[{name:'Alex',entity:'person.demo_alex'},{name:'Sam',entity:'person.demo_sam'}]};
+  if (tag==='ha-person-overview-card') config={...config,columns:2,mobile_columns:2,persons:[{name:'Alex',entity:'person.demo_alex',tracker:'device_tracker.demo_alex_phone',city:'sensor.demo_alex_city',battery:'sensor.demo_alex_battery',distance:'sensor.demo_alex_distance',travel_time:'sensor.demo_alex_travel',home_label:'Eksempelby'},{name:'Sam',entity:'person.demo_sam',tracker:'device_tracker.demo_sam_phone',city:'sensor.demo_sam_city',battery:'sensor.demo_sam_battery',distance:'sensor.demo_sam_distance',travel_time:'sensor.demo_sam_travel',home_label:'Eksempelby'},{name:'Jamie',entity:'person.demo_jamie',tracker:'device_tracker.demo_jamie_watch',city:'sensor.demo_jamie_city',battery:'sensor.demo_jamie_battery',distance:'sensor.demo_jamie_distance',travel_time:'sensor.demo_jamie_travel',home_label:'Eksempelby'},{name:'Taylor',entity:'person.demo_taylor',tracker:'device_tracker.demo_taylor_watch',city:'sensor.demo_taylor_city',battery:'sensor.demo_taylor_battery',distance:'sensor.demo_taylor_distance',travel_time:'sensor.demo_taylor_travel',home_label:'Eksempelby'}]};
   return config;
 }
 window.renderDemo = (tag) => {
@@ -151,6 +158,8 @@ window.renderDemo = (tag) => {
   config=enrich(config||{},tag);
   const ids=collect(config); ids.add('binary_sensor.demo_leak'); ids.add('sensor.demo_problem_count');
   const states={}; for(const id of ids) states[id]=stateFor(id);
+  const prices=Array.from({length:24},(_,hour)=>({start_time:new Date(new Date().setHours(hour,0,0,0)).toISOString(),price:Math.round((1.45+Math.cos(hour/3)*.72+(hour>17&&hour<21?.8:0))*100)/100}));
+  for(const [id,state] of Object.entries(states)){if(/stromligning_current_price/.test(id)){state.state='1.38';state.attributes.prices=prices}if(/stromligning_tomorrow_available/.test(id)){state.state='on';state.attributes.prices=prices.map((p,i)=>({...p,start_time:new Date(Date.now()+86400000+i*3600000).toISOString()}));state.attributes.forecast_data=true}if(/stromligning_forecasts/.test(id))state.attributes.prices=prices;}
   const hass={ states, language:'da', locale:{language:'da-DK',number_format:'comma_decimal'}, config:{unit_system:{temperature:'°C'},latitude:55.67,longitude:12.57}, themes:{darkMode:true}, user:{name:'Demo User'}, formatEntityState:(e)=>e.state, formatEntityAttributeValue:(e,k)=>e.attributes[k], callService:async()=>{}, callWS:async(msg)=> msg?.type?.includes('history')?{}:[], fetchWithAuth:fetch, hassUrl:(p)=>p, localize:(k)=>k };
   const el=document.createElement(tag); document.querySelector('#stage').append(el); el.setConfig?.(config); el.hass=hass;
   window.__demo={tag,config,ids:[...ids]};
@@ -164,7 +173,7 @@ for (const item of dirs) {
   const sourceUrl = new URL(`file://${join(item.dir, item.file)}`).href;
   await writeFile(html, `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
   :root{color-scheme:dark;--primary-text-color:#f1f5f9;--secondary-text-color:#aab8c5;--card-background-color:#16212b;--ha-card-background:#16212b;--surface:#16212b;--dashboard-surface:#16212b;--dashboard-surface-soft:#1d2b36;--dashboard-border:rgba(255,255,255,.09);--dashboard-shadow-soft:0 12px 32px rgba(0,0,0,.28);--primary-color:#55b7d9;--info-color:#55b7d9;--success-color:#63c792;--warning-color:#e6b75c;--error-color:#e06d72;--divider-color:rgba(255,255,255,.1)}
-  *{box-sizing:border-box}html,body{margin:0;width:390px;min-height:100%;background:#0d151c;color:var(--primary-text-color);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:16px}#stage{width:358px}#stage>*,ha-card{display:block;width:100%}.camera-placeholder,.camera-art{width:100%;min-height:190px;border-radius:14px;background:linear-gradient(145deg,#263746,#55758b);display:grid;place-items:center;color:rgba(255,255,255,.7);font-size:12px;letter-spacing:.18em}button{font:inherit}
+  *{box-sizing:border-box}html,body{margin:0;width:${previewWidth}px;min-height:100%;background:#0d151c;color:var(--primary-text-color);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{padding:${previewWidth < 200 ? 0 : 16}px}#stage{width:${previewWidth < 200 ? previewWidth : previewWidth - 32}px}#stage>*,ha-card{display:block;width:100%}.camera-placeholder,.camera-art{width:100%;min-height:190px;border-radius:14px;background:linear-gradient(145deg,#263746,#55758b);display:grid;place-items:center;color:rgba(255,255,255,.7);font-size:12px;letter-spacing:.18em}button{font:inherit}
   </style><div id="stage"></div><script>${fakeRuntime}</script><script type="module">try{await import(${JSON.stringify(sourceUrl)});renderDemo(${JSON.stringify(item.tag)})}catch(e){document.body.innerHTML='<pre id="failure">'+String(e.stack||e)+'</pre>'}</script>`);
   const page = await cdpPage(new URL(`file://${html}`).href);
   await page.send("Page.enable");
