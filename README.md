@@ -8,12 +8,17 @@ Oversigt over et Home Assistant-dashboard bygget stort set udelukkende af selvby
 
 Alle previews er renderet som rene kort ved 390 px mobilbredde. Navbar og resten af det private dashboard er ikke med, og alle personer, adresser, kameraer, entities og sensorværdier er fiktive demo-data.
 
+- [Retvisende, anonymiseret mobilforside](docs/images/home-dashboard-mobile.png) — samme rækkefølge og tæthed som den virkelige forside, uden navbar-overlap
 - [Forsidekort samlet](docs/images/home-cards-mobile.png)
 - [Energi- og klimakort samlet](docs/images/energy-cards-mobile.png)
 - [Teknik- og kontrolkort samlet](docs/images/tech-cards-mobile.png)
 - [Komplet mobilgalleri](docs/images/all-cards-mobile.png)
 
 Det enkelte korts repository indeholder desuden sit eget fulde billede som `docs/preview.png`. Generatoren i [`tools/generate-mobile-previews.mjs`](tools/generate-mobile-previews.mjs) gør billederne reproducerbare uden forbindelse til en rigtig Home Assistant-installation.
+
+## Medfølgende ressourcer
+
+Kortene må ikke være afhængige af udviklerens private `/local`-mapper. Vejrikonerne til `ha-home-header-card`, `ha-weather-card` og `hourly-weather-scroll-card` samt sikkerheds- og apparatikonerne til `ha-home-status-card` er derfor bundlet som importerede `*-assets.js`-filer i samme repository og release. En installation via HACS henter dermed både kortet og dets nødvendige billedressourcer.
 
 ## Hvad er det her
 
