@@ -70,6 +70,6 @@ Overvågning/Protect, robotter, servere, Tesla, sikkerhed.
 
 Enten interne "byggeklods"-kort (grid/generiske kontroller bygget til genbrug), erstattet af nyere kort, eller stadig kladde. Config findes stadig i [cards.md](cards.md) hvis de skal tages i brug:
 
-`ha-agenda-card`, `ha-control-center-card`, `ha-house-mode-card`, `ha-house-status-card`, `ha-light-scene-card`, `ha-number-grid-card`, `ha-ops-status-card`, `ha-toggle-grid-card`, `calefa-number-control-card.js`, `hourly-weather-scroll-card.js`, `pool-forecast-card.js`, `pool-history-card.js`, `mysmart-draggable-toggle.js`, `hyacintvej-home-card`.
+`ha-agenda-card`, `ha-control-center-card`, `ha-house-mode-card`, `ha-house-status-card`, `ha-light-scene-card`, `ha-number-grid-card`, `ha-ops-status-card`, `ha-toggle-grid-card`, `calefa-number-control-card.js`, `hourly-weather-scroll-card.js`, `pool-forecast-card.js`, `pool-history-card.js`, `mysmart-draggable-toggle.js` samt et privat lokalt oversigtskort.
 
 `energy-fjernvarme-labels.js` er ikke et kort — det er et globalt script der omskriver "gas" til "fjernvarme" på HA's indbyggede `/energy`-side.

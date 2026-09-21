@@ -485,7 +485,7 @@ Temperaturgrafer med dynamiske termostatmål.
 
 "Tesla Vehicle Center" — samlet Tesla-, Monta- og EV Ledger-kort.
 
-- `title` — tekst, standard "Tesla ladning" / "EnerGitte" afhængigt af hvilket af de to kort
+- `title` — tekst, standard "Tesla ladning" / "Elbil" afhængigt af hvilket af de to kort
 - `navigation_path` — tekst, standard `/teknik-overblik/tesla`
 - `entities` — objekt-map der overskriver et stort indbygget `TESLA_ENTITIES`-default: batteri, rækkevidde, kilometertæller, online, indendørs/udendørs temp, sover, lader/lades-flag, døre, sentry, bagagerum, lokations-tracker, hvac, effektivitet, dæktryk x4, dags-/ture-/sidste-tur-statistik, ladeeffekt/-hastighed/-færdig/-resterende/-estimat, mål-SOC, klar-til-tid, bedste ladetid/-pris, Monta wallet/transaktioner/kontrol-entiteter
 - `evledger_entry_id` — **påkrævet** for at kunne slette ture/ladninger via "Slet"-knapperne (ingen fallback-værdi; det var oprindeligt hardcoded til denne instans' eget EV Ledger config-entry, men er fjernet i den publicerede udgave)
@@ -654,9 +654,9 @@ Klikbar og trækbar toggle-switch.
 ---
 
 ### smart-home-overview-card
-**Tag:** `custom:smart-home-overview-card` · **Version:** 1.0.0 · **Repo:** [MRDonnii/smart-home-overview-card](https://github.com/MRDonnii/smart-home-overview-card) · **Bruges i:** ikke sat op i nogen dashboard endnu (kun forgængeren `hyacintvej-home-card` findes lokalt, se note nedenfor)
+**Tag:** `custom:smart-home-overview-card` · **Version:** 1.0.1 · **Repo:** [MRDonnii/ha-smart-home-cards](https://github.com/MRDonnii/ha-smart-home-cards) · **Bruges i:** ikke sat op i noget offentligt eksempel-dashboard endnu (kun en privat forgænger findes lokalt, se note nedenfor)
 
-Fuldt genericeret genudgave af det tidligere lokale `hyacintvej-home-card`: klokke/vejr-hero, roterende alarm-ticker, 4 nøgletal-fliser (husforbrug/elbil/elpris/pool), 4 systemfliser (kæledyr/sikkerhed/varme/indstillinger), live kamera-grid, familie/tilstedeværelses-grid og en elpris-graf med dag/i morgen/uge-faner. Layoutet er fast, men alt indhold — entiteter, alarmer, personer, kameraer, navigationsstier — er konfigurerbart, med en fuld visuel editor (tekstfelter + JSON-textareas) og `getStubConfig` så kortet er brugbart med det samme fra kortvælgeren.
+Fuldt genericeret genudgave af et tidligere privat oversigtskort: klokke/vejr-hero, roterende alarm-ticker, 4 nøgletal-fliser (husforbrug/elbil/elpris/pool), 4 systemfliser (kæledyr/sikkerhed/varme/indstillinger), live kamera-grid, familie/tilstedeværelses-grid og en elpris-graf med dag/i morgen/uge-faner. Layoutet er fast, men alt indhold — entiteter, alarmer, personer, kameraer, navigationsstier — er konfigurerbart, med en fuld visuel editor (tekstfelter + JSON-textareas) og `getStubConfig` så kortet er brugbart med det samme fra kortvælgeren.
 
 - `title`, `pet_name`, `car_name`, `currency` — tekst
 - `entities` — objekt-map, ~40 valgfrie nøgler (hus-mode, alarm, vejr, effekt/elbil, elpris, pool, kæledyrsfoder, låse, varme/Calefa-agtige sensorer, hvidevarer, m.m.) — se README for fuld liste
@@ -669,7 +669,7 @@ Fuldt genericeret genudgave af det tidligere lokale `hyacintvej-home-card`: klok
 - `camera_groups` — array af `{label, selector_entity, path, cameras: [{key, name, camera_entity, path, detection_prefix, motion_entity, extra_event_entities}]}`
 - Har fuld visuel editor (`smart-home-overview-card-editor`)
 
-**Om genericeringen:** den oprindelige `hyacintvej-home-card` havde rigtige familienavne (Mads, Viggo, Mådde, Donnii), gadenavnet Hyacintvej og en lang række brand-/hardware-specifikke entity-id'er (Verisure, Wavin Calefa, Kamstrup, Strømligning) hardcoded direkte i render-logikken — `setConfig` gemte konfigurationen, men intet i filen læste den bagefter, så kortet reelt ikke var konfigurerbart. `smart-home-overview-card` er en fra bunden genericeret udgave: alle ca. 45 entity-referencer, de tre store datalister (alerts/people/camera_groups) og alle navigationsstier er flyttet til config med generiske eksempel-defaults. Layout, CSS og al forretningslogik (batteri-tærskler, elpris-niveauer, kamera-detektionsmønster) er bevaret uændret.
+**Om genericeringen:** den private forgænger havde husstandsspecifikke person- og lokationsnavne samt brand-/hardware-specifikke entity-id'er hardcoded direkte i render-logikken — `setConfig` gemte konfigurationen, men intet i filen læste den bagefter, så kortet reelt ikke var konfigurerbart. `smart-home-overview-card` er en fra bunden genericeret udgave: alle ca. 45 entity-referencer, de tre store datalister (alerts/people/camera_groups) og alle navigationsstier er flyttet til config med generiske eksempel-defaults. Layout, CSS og al forretningslogik (batteri-tærskler, elpris-niveauer, kamera-detektionsmønster) er bevaret uændret.
 
 ---
 
@@ -677,6 +677,6 @@ Fuldt genericeret genudgave af det tidligere lokale `hyacintvej-home-card`: klok
 
 Kun **`energy-fjernvarme-labels.js`** er holdt uden for GitHub — det er ikke et kort (intet `customElements.define`), men et lille DOM-script der omskriver "gas" til "fjernvarme" på HA's indbyggede `/energy`-side. Holdt uden for kataloget over faktiske kort.
 
-Den lokale `hyacintvej-home-card` (husstandens egen forside, med rigtige familienavne og adresse hardcoded direkte i render-logikken i stedet for config) er **ikke** publiceret som den er og bliver det ikke — men er genopbygget fra bunden som en fuldt config-drevet, generisk udgave: [smart-home-overview-card](https://github.com/MRDonnii/smart-home-overview-card). Se dens afsnit ovenfor for hvad der er ændret.
+Det private lokale oversigtskort (med husstandsspecifikke navne og lokation hardcoded direkte i render-logikken i stedet for config) er **ikke** publiceret som det er og bliver det ikke — men er genopbygget fra bunden som en fuldt config-drevet, generisk udgave i [ha-smart-home-cards](https://github.com/MRDonnii/ha-smart-home-cards). Se afsnittet ovenfor for hvad der er ændret.
 
-Alle øvrige kort — inklusive de fire der tidligere var udeladt her (`ha-license-plate-card`, `ha-person-detection-card`, `ha-tesla-vehicle-card`, `hyacintvej-home-card`) og de ældre rod-niveau `.js`-filer — er nu publiceret som selvstændige repos. De indeholder kun generisk kort-kode: entity-id'er i defaults er navneeksempler til udskiftning, ikke data der afslører noget om husstanden. Et enkelt hardcoded internt id (`ha-tesla-vehicle-card`s EV Ledger-integrations-id) blev fjernet fra den publicerede udgave og gjort til et påkrævet config-felt i stedet.
+De publicerede kort indeholder kun generisk kort-kode: entity-id'er i defaults er navneeksempler til udskiftning, ikke data der afslører noget om husstanden. Den private forgænger er ikke publiceret. Et enkelt hardcoded internt id (`ha-tesla-vehicle-card`s EV Ledger-integrations-id) blev fjernet fra den publicerede udgave og gjort til et påkrævet config-felt i stedet.
